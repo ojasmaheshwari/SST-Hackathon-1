@@ -30,5 +30,12 @@ main {
 #grid-container {
     width: 70%;
     height: 100%;
-    background-color: bisque;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 1rem 0 1rem 0;
+}
+
+.grid-box {
+    background-color: lightblue;
+    border: 1px solid black;
 }
