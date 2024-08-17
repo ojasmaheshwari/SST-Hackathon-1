@@ -38,4 +38,12 @@ main {
 .grid-box {
     background-color: lightblue;
     border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bomb-image {
+    width: 3rem;
+    height: 3rem;
 }
