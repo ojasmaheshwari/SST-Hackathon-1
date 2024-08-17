@@ -13,7 +13,7 @@ const getGridBoxElement = (number) => {
     return gridContainerElement.children[number-1];
 }
 
-const placeBombs = () => {
+const placeBombsAndLeaves = () => {
     for (let i=0; i<map.length; i++) {
         if (map[i] == 1) {
             const gridBoxToPlaceBomb = getGridBoxElement(i+1);
@@ -26,4 +26,14 @@ const placeBombs = () => {
     }
 }
 
-placeBombs();
+const clearBoard = () => {
+    const gridBoxes = gridContainerElement.children;
+
+    for (let i=0; i<gridBoxes.length; i++) {
+        const gridBox = gridBoxes[i];
+        gridBox.innerHTML = "";
+    }
+}
+
+placeBombsAndLeaves();
+clearBoard();
