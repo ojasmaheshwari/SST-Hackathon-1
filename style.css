@@ -23,6 +23,7 @@ main {
     width: 100%;
     height: calc(100svh - 5rem);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -46,4 +47,10 @@ main {
 .bomb-image, .leaf-image {
     width: 3rem;
     height: 3rem;
+}
+
+.clearview-label {
+    text-align: center;
+    line-height: 1.1rem;
+    padding: 1rem 0 0rem 0;
 }
