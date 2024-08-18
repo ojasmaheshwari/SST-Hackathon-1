@@ -66,14 +66,28 @@ const isBomb = (id) => {
     return map[id] == 1;
 }
 
+const revealBox = (id) => {
+    id = Number(id);
+    const gridBox = getGridBoxElement(id+1);
+
+    if (isBomb(id)) {
+        gridBox.innerHTML = bombElement;
+    }
+    else {
+        gridBox.innerHTML = leafElement;
+    }
+}
+
 const boxClicked = (e) => {
     const gridBox = e.target;
 
     if (isBomb(gridBox.id)) {
         console.log("Box is bomb");
+        revealBox(gridBox.id);
     }
     else {
         console.log("Box is leaf");
+        revealBox(gridBox.id);
     }
 }
 
