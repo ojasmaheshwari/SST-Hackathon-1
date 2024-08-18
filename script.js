@@ -1,4 +1,4 @@
-const map = [0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1];
+const map = new Array(16).fill(0);
 
 const gridContainerElement = document.querySelector("#grid-container");
 const bombElement = '<img src="assets/bomb.png" alt="bomb" class="bomb-image">';
@@ -11,10 +11,33 @@ let clearViewTimerElement = document.querySelector("#clearview-timer");
 const clearViewLabelElement = document.querySelector(".clearview-label");
 const boxClickedId = -1;
 let userRevealedLeaves = [];
-const numOfLeavesInMap = map.filter((val) => val === 0).length;
 const gameOverPopUpOverlay = document.querySelector(".gameover-popup-overlay");
 const gameWonPopUpOverlay = document.querySelector(".gamewon-popup-overlay");
 const playAgainLinks = document.querySelectorAll(".playagain-link");
+let bombs = [];
+const mapSize = map.length;
+
+const generateBombs = () => {
+  if (bombs.length === 5) {
+    return;
+  }
+  const bombPosition = Math.floor(Math.random() * (mapSize - 1));
+  if (bombs.includes(bombPosition)) {
+    generateBombs();
+  } else {
+    bombs.push(bombPosition);
+  }
+
+  if (bombs.length < 5) {
+    generateBombs();
+  }
+};
+
+const insertBombsInMap = () => {
+  bombs.forEach((bombPosition) => {
+    map[bombPosition] = 1;
+  });
+};
 
 const getGridBoxElement = (number) => {
   return gridContainerElement.children[number - 1];
@@ -82,6 +105,7 @@ const revealBox = (id) => {
 };
 
 const checkWin = () => {
+  const numOfLeavesInMap = map.filter((val) => val === 0).length;
   return numOfLeavesInMap === userRevealedLeaves.length;
 };
 
@@ -121,6 +145,8 @@ const removeBoxClickListeners = () => {
 
 const playAgain = () => {
   userRevealedLeaves = [];
+  bombs = [];
+  map.fill(0);
   if (gameOverPopUpOverlay.style.display === "flex") {
     gameOverPopUpOverlay.style.display = "none";
   } else if (gameWonPopUpOverlay.style.display === "flex") {
@@ -130,12 +156,16 @@ const playAgain = () => {
   removeBoxClickListeners();
 
   clearBoard();
+  generateBombs();
+  insertBombsInMap();
   clearViewLabelElement.innerHTML = clearViewLabelInitialValue;
   clearViewTimerElement = document.querySelector("#clearview-timer");
   placeBombsAndLeaves();
   startClearViewTimer();
 };
 
+generateBombs();
+insertBombsInMap();
 placeBombsAndLeaves();
 startClearViewTimer();
 
