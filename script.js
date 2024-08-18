@@ -11,6 +11,8 @@ const clearViewInterval = 5;
 const clearViewTimerElement = document.querySelector("#clearview-timer");
 const clearViewLabelElement = document.querySelector(".clearview-label");
 const boxClickedId = -1;
+const userRevealedLeaves = [];
+const numOfLeavesInMap = map.filter(val => val === 0).length;
 
 const getGridBoxElement = (number) => {
     return gridContainerElement.children[number-1];
@@ -78,16 +80,24 @@ const revealBox = (id) => {
     }
 }
 
+const checkWin = () => {
+    return numOfLeavesInMap === userRevealedLeaves.length;
+}
+
 const boxClicked = (e) => {
     const gridBox = e.target;
 
     if (isBomb(gridBox.id)) {
-        console.log("Box is bomb");
         revealBox(gridBox.id);
+        console.log("Game Over!");
     }
     else {
-        console.log("Box is leaf");
         revealBox(gridBox.id);
+        userRevealedLeaves.push(gridBox.id);
+    }
+
+    if (checkWin()) {
+        console.log("User won!");
     }
 }
 
