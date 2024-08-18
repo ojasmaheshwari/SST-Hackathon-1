@@ -29,10 +29,11 @@ main {
 }
 
 #grid-container {
-    width: 70%;
     height: 100%;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px);
+    gap: 10px;
     padding: 1rem 0 1rem 0;
 }
 

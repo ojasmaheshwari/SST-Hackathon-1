@@ -1,4 +1,4 @@
-const map = [0, 1, 0, 1, 1, 0, 0, 1, 0];
+const map = [0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1];
 
 const gridContainerElement = document.querySelector("#grid-container");
 const bombElement = '<img src="assets/bomb.png" alt="bomb" class="bomb-image">';
