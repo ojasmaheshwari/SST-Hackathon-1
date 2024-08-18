@@ -10,6 +10,7 @@ const leafElement = "<img src=\"assets/leaf.webp\" alt=\"leaf\" class=\"leaf-ima
 const clearViewInterval = 5;
 const clearViewTimerElement = document.querySelector("#clearview-timer");
 const clearViewLabelElement = document.querySelector(".clearview-label");
+const boxClickedId = -1;
 
 const getGridBoxElement = (number) => {
     return gridContainerElement.children[number-1];
@@ -33,6 +34,10 @@ const clearBoard = () => {
 
     for (let i=0; i<gridBoxes.length; i++) {
         const gridBox = gridBoxes[i];
+
+        // Label boxes with id
+        gridBox.id = i;
+
         gridBox.innerHTML = "";
     }
 }
@@ -54,7 +59,30 @@ const startClearViewTimer = () => {
 }
 
 const startMainGame = () => {
+    makeBoxesClickable();
+}
 
+const isBomb = (id) => {
+    return map[id] == 1;
+}
+
+const boxClicked = (e) => {
+    const gridBox = e.target;
+
+    if (isBomb(gridBox.id)) {
+        console.log("Box is bomb");
+    }
+    else {
+        console.log("Box is leaf");
+    }
+}
+
+const makeBoxesClickable = () => {
+    const gridBoxes = gridContainerElement.children;
+    for (let i=0; i<gridBoxes.length; i++) {
+        const gridBox = gridBoxes[i];
+        gridBox.addEventListener("click", boxClicked);
+    }
 }
 
 
