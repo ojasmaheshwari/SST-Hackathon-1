@@ -16,6 +16,7 @@ const gameWonPopUpOverlay = document.querySelector(".gamewon-popup-overlay");
 const playAgainLinks = document.querySelectorAll(".playagain-link");
 let bombs = [];
 const mapSize = map.length;
+const scoreLabel = document.querySelector("#gamescore");
 
 const generateBombs = () => {
   if (bombs.length === 5) {
@@ -125,6 +126,8 @@ const boxClicked = (e) => {
     console.log("User won!");
     gameWonPopUpOverlay.style.display = "flex";
   }
+
+  scoreLabel.innerText = userRevealedLeaves.length;
 };
 
 const makeBoxesClickable = () => {
@@ -147,6 +150,7 @@ const playAgain = () => {
   userRevealedLeaves = [];
   bombs = [];
   map.fill(0);
+  scoreLabel.innerText = 0;
   if (gameOverPopUpOverlay.style.display === "flex") {
     gameOverPopUpOverlay.style.display = "none";
   } else if (gameWonPopUpOverlay.style.display === "flex") {
