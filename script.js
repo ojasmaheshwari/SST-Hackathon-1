@@ -9,6 +9,7 @@ const bombElement = "<img src=\"assets/bomb.png\" alt=\"bomb\" class=\"bomb-imag
 const leafElement = "<img src=\"assets/leaf.webp\" alt=\"leaf\" class=\"leaf-image\">";
 const clearViewInterval = 5;
 const clearViewTimerElement = document.querySelector("#clearview-timer");
+const clearViewLabelElement = document.querySelector(".clearview-label");
 
 const getGridBoxElement = (number) => {
     return gridContainerElement.children[number-1];
@@ -44,9 +45,16 @@ const startClearViewTimer = () => {
         sec--;
         if (sec < 0) {
             clearInterval(timer);
+
             clearBoard();
+            clearViewLabelElement.innerText = "Click on boxes to reveal them. If it's a bomb, the game ends.";
+            startMainGame();
         }
     }, 1000);
+}
+
+const startMainGame = () => {
+
 }
 
 
