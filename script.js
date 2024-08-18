@@ -19,6 +19,7 @@ const mapSize = map.length;
 const scoreLabel = document.querySelector("#gamescore");
 const playTimerLabel = document.querySelector("#play-timer");
 let playTimerInterval;
+const explosionSound = new Audio("assets/explosion.mp3");
 
 const generateBombs = () => {
   if (bombs.length === 5) {
@@ -128,6 +129,7 @@ const boxClicked = (e) => {
   if (isBomb(gridBox.id)) {
     revealBox(gridBox.id);
     console.log("Game Over!");
+    explosionSound.play();
     gameOverPopUpOverlay.style.display = "flex";
     clearInterval(playTimerInterval);
   } else {

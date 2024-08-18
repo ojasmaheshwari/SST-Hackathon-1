@@ -91,3 +91,29 @@ main {
     display: flex;
     gap: 1rem;
 }
+
+.red {
+    color: #e02b34;
+}
+
+.green {
+    color: #3be632;
+}
+
+@media only screen and (max-width: 600px) {
+    #grid-container {
+        grid-template-columns: repeat(4, 75px);
+        grid-template-rows: repeat(4, 75px);
+    }
+
+    header {
+        height: fit-content;
+        font-size: small;
+        padding: 1rem 0 0 0;
+    }
+
+    main {
+        height: calc(100svh - 2rem);
+    }
+
+}
