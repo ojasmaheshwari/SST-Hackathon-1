@@ -17,6 +17,8 @@ const playAgainLinks = document.querySelectorAll(".playagain-link");
 let bombs = [];
 const mapSize = map.length;
 const scoreLabel = document.querySelector("#gamescore");
+const playTimerLabel = document.querySelector("#play-timer");
+let playTimerInterval;
 
 const generateBombs = () => {
   if (bombs.length === 5) {
@@ -69,6 +71,15 @@ const clearBoard = () => {
   }
 };
 
+const startPlayTimer = () => {
+    let startTime = Date.now();
+
+    playTimerInterval = setInterval(function() {
+        let elapsedTime = Date.now() - startTime;
+        playTimerLabel.innerText = (elapsedTime / 1000).toFixed(3);
+    }, 100);
+}
+
 const startClearViewTimer = () => {
   let sec = clearViewInterval - 1;
 
@@ -82,6 +93,7 @@ const startClearViewTimer = () => {
       clearViewLabelElement.innerText =
         "Click on boxes to reveal them. If it's a bomb, the game ends.";
       startMainGame();
+      startPlayTimer();
     }
   }, 1000);
 };
@@ -117,6 +129,7 @@ const boxClicked = (e) => {
     revealBox(gridBox.id);
     console.log("Game Over!");
     gameOverPopUpOverlay.style.display = "flex";
+    clearInterval(playTimerInterval);
   } else {
     revealBox(gridBox.id);
     userRevealedLeaves.push(gridBox.id);
@@ -125,6 +138,7 @@ const boxClicked = (e) => {
   if (checkWin()) {
     console.log("User won!");
     gameWonPopUpOverlay.style.display = "flex";
+    clearInterval(playTimerInterval);
   }
 
   scoreLabel.innerText = userRevealedLeaves.length;
@@ -146,11 +160,14 @@ const removeBoxClickListeners = () => {
   }
 };
 
+
 const playAgain = () => {
   userRevealedLeaves = [];
   bombs = [];
   map.fill(0);
   scoreLabel.innerText = 0;
+  clearInterval(playTimerInterval);
+  playTimerLabel.innerText = 0;
   if (gameOverPopUpOverlay.style.display === "flex") {
     gameOverPopUpOverlay.style.display = "none";
   } else if (gameWonPopUpOverlay.style.display === "flex") {
