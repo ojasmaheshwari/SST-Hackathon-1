@@ -20,6 +20,8 @@ const scoreLabel = document.querySelector("#gamescore");
 const playTimerLabel = document.querySelector("#play-timer");
 let playTimerInterval;
 const explosionSound = new Audio("assets/explosion.mp3");
+let elapsedTime;
+const gameWonRecordLabel = document.querySelector("#gamewon-record-time");
 
 const generateBombs = () => {
   if (bombs.length === 5) {
@@ -76,7 +78,7 @@ const startPlayTimer = () => {
     let startTime = Date.now();
 
     playTimerInterval = setInterval(function() {
-        let elapsedTime = Date.now() - startTime;
+        elapsedTime = Date.now() - startTime;
         playTimerLabel.innerText = (elapsedTime / 1000).toFixed(3);
     }, 100);
 }
@@ -140,6 +142,7 @@ const boxClicked = (e) => {
   if (checkWin()) {
     console.log("User won!");
     gameWonPopUpOverlay.style.display = "flex";
+    gameWonRecordLabel.innerText = (elapsedTime / 1000).toFixed(3);
     clearInterval(playTimerInterval);
   }
 
