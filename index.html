@@ -1,37 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Matching</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
-</head>
-<body>
-   <header>
-        <h1>
-            Memory Matching Game
-        </h1>
-   </header> 
-   <main>
-    <h3 class="clearview-label">Clearing board in <span id="clearview-timer">5</span> seconds</h3>
-    <div id="grid-container">
+  </head>
+  <body>
+    <header>
+      <h1>Memory Matching Game</h1>
+    </header>
+    <main>
+      <h3 class="clearview-label">
+        Clearing board in <span id="clearview-timer">5</span> seconds
+      </h3>
+      <div id="grid-container">
         <div class="grid-box"></div>
         <div class="grid-box">
-            <!-- <img src="assets/bomb.png" alt="bomb" class="bomb-image"> -->
+          <!-- <img src="assets/bomb.png" alt="bomb" class="bomb-image"> -->
         </div>
         <div class="grid-box"></div>
         <div class="grid-box">
-            <!-- <img src="assets/bomb.png" alt="bomb" class="bomb-image"> -->
+          <!-- <img src="assets/bomb.png" alt="bomb" class="bomb-image"> -->
         </div>
         <div class="grid-box"></div>
         <div class="grid-box"></div>
         <div class="grid-box"></div>
         <div class="grid-box">
-            <!-- <img src="assets/bomb.png" alt="bomb" class="bomb-image"> -->
+          <!-- <img src="assets/bomb.png" alt="bomb" class="bomb-image"> -->
         </div>
         <div class="grid-box"></div>
+      </div>
+    </main>
+    <div class="gameover-popup-overlay">
+      <div class="gameover-popup">
+        <h1>KABOOM!</h1>
+        <h2>You clicked on a bomb and lost!</h2>
+        <a href="#">Play Again</a>
+      </div>
     </div>
-   </main>
-</body>
+    <div class="gamewon-popup-overlay">
+      <div class="gamewon-popup">
+        <h1>WOOHOOO!</h1>
+        <h2>You wonnnnn!</h2>
+        <a href="#">Play Again</a>
+      </div>
+    </div>
+  </body>
 </html>

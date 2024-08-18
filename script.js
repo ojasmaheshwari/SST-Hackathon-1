@@ -13,6 +13,8 @@ const clearViewLabelElement = document.querySelector(".clearview-label");
 const boxClickedId = -1;
 const userRevealedLeaves = [];
 const numOfLeavesInMap = map.filter(val => val === 0).length;
+const gameOverPopUpOverlay = document.querySelector(".gameover-popup-overlay");
+const gameWonPopUpOverlay = document.querySelector(".gamewon-popup-overlay");
 
 const getGridBoxElement = (number) => {
     return gridContainerElement.children[number-1];
@@ -90,6 +92,7 @@ const boxClicked = (e) => {
     if (isBomb(gridBox.id)) {
         revealBox(gridBox.id);
         console.log("Game Over!");
+        gameOverPopUpOverlay.style.display = "flex";
     }
     else {
         revealBox(gridBox.id);
@@ -98,6 +101,7 @@ const boxClicked = (e) => {
 
     if (checkWin()) {
         console.log("User won!");
+        gameWonPopUpOverlay.style.display = "flex";
     }
 }
 
